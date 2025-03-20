@@ -149,8 +149,4 @@ This project will automatically handle questions that come up in the graded assi
   - Improve the matching function and parameter extraction logic.
   - Test the entire flow thoroughly!
 
-If you have any questions or suggestions, feel free to drop them here!
-
----
-
-This version should be more **casual**, **complete**, and **easy to understand** for your friends. Let me know if you need any adjustments! 😊
+If you have any questions or suggestions, feel free to drop them here! 😊
