@@ -1,5 +1,8 @@
 ## **How It Works (In Simple Terms)**
 
+<!-- add ./idea.png present in current dir -->
+![idea](./idea.png)
+
 ### **Step 1: Receive User's Question**
 When someone hits the **`/api/`** endpoint with a **POST** request, the API will:
 - Take the **question** from the request.
