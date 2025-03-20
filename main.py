@@ -23,10 +23,7 @@ def process_file():
     zip_path = os.path.join(tmp_dir)
     file.save(zip_path)
 
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(tmp_dir)
-
-    extracted_files = zip_ref.namelist()
+    
 
     return "works"
 
