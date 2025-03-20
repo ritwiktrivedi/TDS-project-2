@@ -49,7 +49,7 @@ CPU %	Mem MB	   PID	Process
     0	     0	 20778	     /usr/bin/zsh -i -l -c '/usr/share/code/code'  -p '"0c1d701e5812" + JSON.stringify(process.env) + "0c1d701e5812"'
     0	    98	 20294	fileWatcher [1]
 
-Workspace Stats: 
+Workspace Stats:
 |  Window (● solutions.py - tdsproj2 - python - Visual Studio Code)
 |    Folder (tdsproj2): 6878 files
 |      File types: py(3311) pyc(876) pyi(295) so(67) f90(60) txt(41) typed(36)
@@ -369,3 +369,63 @@ def transcribe_a_youtube_video():
 
 def reconstruct_an_image():
     return ""
+
+functions_dict = {
+    "vs_code_version": vs_code_version,
+    "make_http_requests_with_uv": make_http_requests_with_uv,
+    "run_command_with_npx": run_command_with_npx,
+    "use_google_sheets": use_google_sheets,
+    "use_excel": use_excel,
+    "use_devtools": use_devtools,
+    "count_wednesdays": count_wednesdays,
+    "extract_csv_from_a_zip": extract_csv_from_a_zip,
+    "use_json": use_json,
+    "multi_cursor_edits_to_convert_to_json": multi_cursor_edits_to_convert_to_json,
+    "css_selectors": css_selectors,
+    "process_files_with_different_encodings": process_files_with_different_encodings,
+    "use_github": use_github,
+    "replace_across_files": replace_across_files,
+    "list_files_and_attributes": list_files_and_attributes,
+    "move_and_rename_files": move_and_rename_files,
+    "compare_files": compare_files,
+    "sql_ticket_sales": sql_ticket_sales,
+    "write_documentation_in_markdown": write_documentation_in_markdown,
+    "compress_an_image": compress_an_image,
+    "host_your_portfolio_on_github_pages": host_your_portfolio_on_github_pages,
+    "use_google_colab": use_google_colab,
+    "use_an_image_library_in_google_colab": use_an_image_library_in_google_colab,
+    "deploy_a_python_api_to_vercel": deploy_a_python_api_to_vercel,
+    "create_a_github_action": create_a_github_action,
+    "push_an_image_to_docker_hub": push_an_image_to_docker_hub,
+    "write_a_fastapi_server_to_serve_data": write_a_fastapi_server_to_serve_data,
+    "run_a_local_llm_with_llamafile": run_a_local_llm_with_llamafile,
+    "llm_sentiment_analysis": llm_sentiment_analysis,
+    "llm_token_cost": llm_token_cost,
+    "generate_addresses_with_llms": generate_addresses_with_llms,
+    "llm_vision": llm_vision,
+    "llm_embeddings": llm_embeddings,
+    "embedding_similarity": embedding_similarity,
+    "vector_databases": vector_databases,
+    "function_calling": function_calling,
+    "get_an_llm_to_say_yes": get_an_llm_to_say_yes,
+    "import_html_to_google_sheets": import_html_to_google_sheets,
+    "scrape_imdb_movies": scrape_imdb_movies,
+    "wikipedia_outline": wikipedia_outline,
+    "scrape_the_bbc_weather_api": scrape_the_bbc_weather_api,
+    "find_the_bounding_box_of_a_city": find_the_bounding_box_of_a_city,
+    "search_hacker_news": search_hacker_news,
+    "find_newest_github_user": find_newest_github_user,
+    "create_a_scheduled_github_action": create_a_scheduled_github_action,
+    "extract_tables_from_pdf": extract_tables_from_pdf,
+    "convert_a_pdf_to_markdown": convert_a_pdf_to_markdown,
+    "clean_up_excel_sales_data": clean_up_excel_sales_data,
+    "clean_up_student_marks": clean_up_student_marks,
+    "apache_log_requests": apache_log_requests,
+    "apache_log_downloads": apache_log_downloads,
+    "clean_up_sales_data": clean_up_sales_data,
+    "parse_partial_json": parse_partial_json,
+    "extract_nested_json_keys": extract_nested_json_keys,
+    "duckdb_social_media_interactions": duckdb_social_media_interactions,
+    "transcribe_a_youtube_video": transcribe_a_youtube_video,
+    "reconstruct_an_image": reconstruct_an_image,
+}

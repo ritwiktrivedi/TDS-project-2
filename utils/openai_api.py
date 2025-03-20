@@ -182,8 +182,8 @@ function_definitions_llm = [
 
 
 # OpenAI API settings
-openai_api_chat = "http://aiproxy.sanand.workers.dev/openai/v1/chat/completions"  
-openai_api_key = os.getenv("AIPROXY_TOKEN") 
+openai_api_chat = "http://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
+openai_api_key = os.getenv("AIPROXY_TOKEN")
 
 headers = {
     "Authorization": f"Bearer {openai_api_key}",
@@ -209,8 +209,6 @@ def extract_parameters(prompt: str):
                 "tool_choice": "auto"
             },
         )
-
-    # Parse response
     response_data = response.json()
     if "choices" in response_data and "tool_calls" in response_data["choices"][0]["message"]:
         extracted_data = response_data["choices"][0]["message"]["tool_calls"][0]["function"]
