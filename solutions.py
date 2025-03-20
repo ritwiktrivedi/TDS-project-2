@@ -8,6 +8,7 @@ import zipfile
 import pandas as pd
 import os
 
+
 def vs_code_version():
     return """
 Version:          Code 1.98.2 (ddc367ed5c8936efe395cffeec279b04ffd7db78, 2025-03-12T13:32:45.399Z)
@@ -56,15 +57,28 @@ Workspace Stats:
 |      Conf files:
 """
 
-def make_http_requests_with_uv(
-    url="https://httpbin.org/get", params={"email": "23f2005217@ds.study.iitm.ac.in"}
-):
+
+def make_http_requests_with_uv(arguments):
+    url = "https://httpbin.org/get"
+    params = {"email": "23f2005217@ds.study.iitm.ac.in"}
+    url, params = arguments["url"], arguments["params"]
     response = requests.get(url, params=params)
     return response.json()
 
-def run_command_with_npx(
-    filePath="README.md", prettier_version="3.4.2", hash_algo="sha256", use_npx=True
-):
+
+def run_command_with_npx(arguments):
+    filePath, prettier_version, hash_algo, use_npx = (
+        "README.md",
+        "3.4.2",
+        "sha256",
+        True,
+    )
+    filePath, prettier_version, hash_algo, use_npx = (
+        arguments["filePath"],
+        arguments["prettier_version"],
+        arguments["hash_algo"],
+        arguments["use_npx"],
+    )
     prettier_cmd = (
         ["npx", "-y", f"prettier@{prettier_version}", filePath]
         if use_npx
@@ -89,6 +103,7 @@ def run_command_with_npx(
         print(f"Invalid hash algorithm: {hash_algo}")
         return None
 
+
 def use_google_sheets(
     rows=100, cols=100, start=15, step=12, extract_rows=1, extract_cols=10
 ):
@@ -97,6 +112,7 @@ def use_google_sheets(
     extracted_values = matrix[:extract_rows, :extract_cols]
 
     return np.sum(extracted_values)
+
 
 def use_excel(values=None, sort_keys=None, num_rows=1, num_elements=9):
     if values is None:
@@ -107,6 +123,7 @@ def use_excel(values=None, sort_keys=None, num_rows=1, num_elements=9):
     sorted_values = values[np.argsort(sort_keys)]
     return np.sum(sorted_values[:num_elements])
 
+
 def use_devtools(html=None, input_name=None):
     if html is None:
         html = '<input type="hidden" name="secret" value="12345">'
@@ -115,181 +132,240 @@ def use_devtools(html=None, input_name=None):
 
     soup = BeautifulSoup(html, "html.parser")
     hidden_input = soup.find("input", {"type": "hidden", "name": input_name})
-    
+
     return hidden_input["value"] if hidden_input else None
+
 
 def count_wednesdays(start_date="1990-04-08", end_date="2008-09-29", weekday=2):
     start = datetime.strptime(start_date, "%Y-%m-%d")
     end = datetime.strptime(end_date, "%Y-%m-%d")
-    count = sum(1 for _ in range((end - start).days + 1) if (start + timedelta(_)).weekday() == weekday)
+    count = sum(
+        1
+        for _ in range((end - start).days + 1)
+        if (start + timedelta(_)).weekday() == weekday
+    )
     return count
 
-def extract_csv_from_a_zip(zip_path, extract_to="extracted_files", csv_filename="extract.csv", column_name="answer"):
+
+def extract_csv_from_a_zip(
+    zip_path,
+    extract_to="extracted_files",
+    csv_filename="extract.csv",
+    column_name="answer",
+):
     os.makedirs(extract_to, exist_ok=True)
-    
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+
+    with zipfile.ZipFile(zip_path, "r") as zip_ref:
         zip_ref.extractall(extract_to)
-    
+
     csv_path = os.path.join(extract_to, csv_filename)
-    
+
     if not os.path.exists(csv_path):
         for root, _, files in os.walk(extract_to):
             for file in files:
                 if file.lower().endswith(".csv"):
                     csv_path = os.path.join(root, file)
                     break
-    
+
     if os.path.exists(csv_path):
         df = pd.read_csv(csv_path)
         if column_name in df.columns:
             return ", ".join(map(str, df[column_name].dropna().tolist()))
-    
+
     return ""
+
 
 def use_json():
     return ""
-    
+
+
 def multi_cursor_edits_to_convert_to_json():
     return ""
-    
+
+
 def css_selectors():
     return ""
-    
+
+
 def process_files_with_different_encodings():
     return ""
-    
+
+
 def use_github():
     return ""
-    
+
+
 def replace_across_files():
     return ""
-    
+
+
 def list_files_and_attributes():
     return ""
-    
+
+
 def move_and_rename_files():
     return ""
-    
+
+
 def compare_files():
     return ""
-    
+
+
 def sql_ticket_sales():
     return ""
-    
+
+
 def write_documentation_in_markdown():
     return ""
-    
+
+
 def compress_an_image():
     return ""
-    
+
+
 def host_your_portfolio_on_github_pages():
     return ""
-    
+
+
 def use_google_colab():
     return ""
-    
+
+
 def use_an_image_library_in_google_colab():
     return ""
-    
+
+
 def deploy_a_python_api_to_vercel():
     return ""
-    
+
+
 def create_a_github_action():
     return ""
-    
+
+
 def push_an_image_to_docker_hub():
     return ""
-    
+
+
 def write_a_fastapi_server_to_serve_data():
     return ""
-    
+
+
 def run_a_local_llm_with_llamafile():
     return ""
-    
+
+
 def llm_sentiment_analysis():
     return ""
-    
+
+
 def llm_token_cost():
     return ""
-    
+
+
 def generate_addresses_with_llms():
     return ""
-    
+
+
 def llm_vision():
     return ""
-    
+
+
 def llm_embeddings():
     return ""
-    
+
+
 def embedding_similarity():
     return ""
-    
+
+
 def vector_databases():
     return ""
-    
+
+
 def function_calling():
     return ""
-    
+
+
 def get_an_llm_to_say_yes():
     return ""
-    
+
+
 def import_html_to_google_sheets():
     return ""
-    
+
+
 def scrape_imdb_movies():
     return ""
-    
+
+
 def wikipedia_outline():
     return ""
-    
+
+
 def scrape_the_bbc_weather_api():
     return ""
-    
+
+
 def find_the_bounding_box_of_a_city():
     return ""
-    
+
+
 def search_hacker_news():
     return ""
-    
+
+
 def find_newest_github_user():
     return ""
-    
+
+
 def create_a_scheduled_github_action():
     return ""
-    
+
+
 def extract_tables_from_pdf():
     return ""
-    
+
+
 def convert_a_pdf_to_markdown():
     return ""
-    
+
+
 def clean_up_excel_sales_data():
     return ""
-    
+
+
 def clean_up_student_marks():
     return ""
-    
+
+
 def apache_log_requests():
     return ""
-    
+
+
 def apache_log_downloads():
     return ""
-    
+
+
 def clean_up_sales_data():
     return ""
-    
+
+
 def parse_partial_json():
     return ""
-    
+
+
 def extract_nested_json_keys():
     return ""
-    
+
+
 def duckdb_social_media_interactions():
     return ""
-    
+
+
 def transcribe_a_youtube_video():
     return ""
-    
+
+
 def reconstruct_an_image():
     return ""
-    
