@@ -36,7 +36,28 @@ titles = [
     "Vector Databases",
     "Function Calling",
     "Get an LLM to say Yes",
+    "Import HTML to Google Sheets",
+    "Scrape IMDb movies",
+    "Wikipedia Outline",
+    "Scrape the BBC Weather API",
+    "Find the bounding box of a city",
+    "Search Hacker News",
+    "Find newest GitHub user",
+    "Create a Scheduled GitHub Action",
+    "Extract tables from PDF",
+    "Convert a PDF to Markdown",
+    "Clean up Excel sales data",
+    "Clean up student marks",
+    "Apache log requests",
+    "Apache log downloads",
+    "Clean up sales data",
+    "Parse partial JSON",
+    "Extract nested JSON keys",
+    "DuckDB: Social Media Interactions",
+    "Transcribe a YouTube video",
+    "Reconstruct an image",
 ]
+
 questions = [
     """Install and run Visual Studio Code. In your Terminal (or Command Prompt), type code -s and press Enter. Copy and paste the entire output below.
     What is the output of code -s?""",
@@ -193,7 +214,7 @@ We'll check by sending a request to this URL with ?class=... added and check if 
 Create a tunnel to the Llamafile server using ngrok.
 What is the ngrok URL? It might look like: https://[random].ngrok-free.app/
    """,
-   """
+    """
    DataSentinel Inc. is a tech company specializing in building advanced natural language processing (NLP) solutions. Their latest project involves integrating an AI-powered sentiment analysis module into an internal monitoring dashboard. The goal is to automatically classify large volumes of unstructured feedback and text data from various sources as either GOOD, BAD, or NEUTRAL. As part of the quality assurance process, the development team needs to test the integration with a series of sample inputs—even ones that may not represent coherent text—to ensure that the system routes and processes the data correctly.
 Before rolling out the live system, the team creates a test harness using Python. The harness employs the httpx library to send POST requests to OpenAI's API. For this proof-of-concept, the team uses the dummy model gpt-4o-mini along with a dummy API key in the Authorization header to simulate real API calls.
 One of the test cases involves sending a sample piece of meaningless text:
@@ -211,7 +232,7 @@ response.raise_for_status()
 response.json()
 Code
    """,
-   """
+    """
    LexiSolve Inc. is a startup that delivers a conversational AI platform to enterprise clients. The system leverages OpenAI’s language models to power a variety of customer service, sentiment analysis, and data extraction features. Because pricing for these models is based on the number of tokens processed—and strict token limits apply—accurate token accounting is critical for managing costs and ensuring system stability.
 To optimize operational costs and prevent unexpected API overages, the engineering team at LexiSolve has developed an internal diagnostic tool that simulates and measures token usage for typical prompts sent to the language model.
 One specific test case an understanding of text tokenization. Your task is to generate data for that test case.
@@ -221,7 +242,7 @@ List only the valid English words from these: zgnx, LtegJz, a0c0r8KWZq, tbRe, Cf
 Number of tokens:
 Remember: indicating that this is a user message takes up a few extra tokens. You actually need to make the request to get the answer.
    """,
-   """
+    """
    RapidRoute Solutions is a logistics and delivery company that relies on accurate and standardized address data to optimize package routing. Recently, they encountered challenges with manually collecting and verifying new addresses for testing their planning software. To overcome this, the company decided to create an automated address generator using a language model, which would provide realistic, standardized U.S. addresses that could be directly integrated into their system.
 The engineering team at RapidRoute is tasked with designing a service that uses OpenAI's GPT-4o-Mini model to generate fake but plausible address data. The addresses must follow a strict format, which is critical for downstream processes such as geocoding, routing, and verification against customer databases. For consistency and validation, the development team requires that the addresses be returned as structured JSON data with no additional properties that could confuse their parsers.
 As part of the integration process, you need to write the body of the request to an OpenAI chat completion call that:
@@ -234,7 +255,7 @@ Note that you don't need to run the request or use an API key; your task is simp
 What is the JSON body we should send to https://api.openai.com/v1/chat/completions for this? (No need to run it or to use an API key. Just write the body of the request below.)
 There's no answer box above. Figure out how to enable it. That's part of the test.
    """,
-   """
+    """
    Acme Global Solutions manages hundreds of invoices from vendors every month. To streamline their accounts payable process, the company is developing an automated document processing system. This system uses a computer vision model to extract useful text from scanned invoice images. Critical pieces of data such as vendor email addresses, invoice or transaction numbers, and other details are embedded within these documents.
 Your team is tasked with integrating OpenAI's vision model into the invoice processing workflow. The chosen model, gpt-4o-mini, is capable of analyzing both text and image inputs simultaneously. When an invoice is received—for example, an invoice image may contain a vendor email like alice.brown@acmeglobal.com and a transaction number such as 34921. The system needs to extract all embedded text to automatically populate the vendor management system.
 The automated process will send a POST request to OpenAI's API with two inputs in a single user message:
@@ -349,19 +370,31 @@ Here's your task: You are chatting with an LLM that has been told to never say Y
 Use your AI Proxy token when prompted.
 Write a prompt that will get the LLM to say Yes.
 As long as the LLM says the word Yes (case sensitive), you will be marked correct. Careful! If you get a correct answer, submit and don't change it. You may get a different answer next time.
-    """
+    """,
 ]
-
-
-# store in a json file
 
 
 import json
 
 data = {}
 
-for i in range(len(titles)):
-    data[titles[i]] = questions[i]
 
-with open('questions.json', 'w') as json_file:
-    json.dump(data, json_file, indent=4)
+def function_case(title):
+    title = title.lower()
+    title = title.replace(" ", "_")
+    title = title.replace(":", "")
+    title = title.replace("-", "_")
+    title = title.replace("(", "")
+    title = title.replace(")", "")
+    title = title.replace("?", "")
+    title = title.replace(",", "")
+    return title
+
+
+for i in range(len(titles)):
+    if i >= len(questions):
+        break
+    data[function_case(titles[i])] = questions[i]
+
+with open("questions.json", "w") as f:
+    json.dump(data, f)
