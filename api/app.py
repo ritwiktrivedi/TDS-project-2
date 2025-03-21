@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
 import os
-import zipfile
-import pandas as pd
 
 from utils.question_matching import find_similar_question
 from utils.openai_api import extract_parameters
 from utils.solution_functions import functions_dict
+from utils.file_process import unzip_folder
 
 
 tmp_dir = "tmp_uploads"
@@ -25,6 +24,7 @@ def process_file():
     # Handle the file processing if file is present
     if file:
         # Your file processing logic goes here (e.g., extracting data from a CSV file)
+        unzip_folder(file, tmp_dir)
         pass
 
     # Match the question to the appropriate function
