@@ -392,9 +392,16 @@ def function_case(title):
 
 
 for i in range(len(titles)):
-    if i >= len(questions):
-        break
-    data[function_case(titles[i])] = questions[i]
+    # if i >= len(questions):
+    #     break
+    data[function_case(titles[i])] = (
+        {
+            "description": questions[i],
+            "files": [],
+        }
+        if i < len(questions)
+        else {"description": "", "files": []}
+    )
 
-with open("questions.json", "w") as f:
-    json.dump(data, f)
+# with open("/home/gir/Desktop/tdsproj2/data/questions.json", "w") as f:
+#   json.dump(data, f)

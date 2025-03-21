@@ -57,14 +57,12 @@ Workspace Stats:
 |      Conf files:
 """
 
-
 def make_http_requests_with_uv(arguments):
     url = "https://httpbin.org/get"
     params = {"email": "23f2005217@ds.study.iitm.ac.in"}
     url, params = arguments["url"], arguments["params"]
     response = requests.get(url, params=params)
     return response.json()
-
 
 def run_command_with_npx(arguments):
     filePath, prettier_version, hash_algo, use_npx = (
