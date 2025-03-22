@@ -11,51 +11,51 @@ import os
 
 def vs_code_version():
     return """
-Version:          Code 1.98.2 (ddc367ed5c8936efe395cffeec279b04ffd7db78, 2025-03-12T13:32:45.399Z)
-OS Version:       Linux x64 6.12.15-200.fc41.x86_64
-CPUs:             11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz (8 x 1300)
-Memory (System):  7.40GB (3.72GB free)
-Load (avg):       3, 2, 2
-VM:               0%
-Screen Reader:    no
-Process Argv:     --crash-reporter-id 80b4d7e7-0056-4767-b601-6fcdbec0b54d
-GPU Status:       2d_canvas:                              enabled
-                  canvas_oop_rasterization:               enabled_on
-                  direct_rendering_display_compositor:    disabled_off_ok
-                  gpu_compositing:                        enabled
-                  multiple_raster_threads:                enabled_on
-                  opengl:                                 enabled_on
-                  rasterization:                          enabled
-                  raw_draw:                               disabled_off_ok
-                  skia_graphite:                          disabled_off
-                  video_decode:                           enabled
-                  video_encode:                           disabled_software
-                  vulkan:                                 disabled_off
-                  webgl:                                  enabled
-                  webgl2:                                 enabled
-                  webgpu:                                 disabled_off
-                  webnn:                                  disabled_off
+    Version:          Code 1.98.2 (ddc367ed5c8936efe395cffeec279b04ffd7db78, 2025-03-12T13:32:45.399Z)
+    OS Version:       Linux x64 6.12.15-200.fc41.x86_64
+    CPUs:             11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz (8 x 1300)
+    Memory (System):  7.40GB (3.72GB free)
+    Load (avg):       3, 2, 2
+    VM:               0%
+    Screen Reader:    no
+    Process Argv:     --crash-reporter-id 80b4d7e7-0056-4767-b601-6fcdbec0b54d
+    GPU Status:       2d_canvas:                              enabled
+                    canvas_oop_rasterization:               enabled_on
+                    direct_rendering_display_compositor:    disabled_off_ok
+                    gpu_compositing:                        enabled
+                    multiple_raster_threads:                enabled_on
+                    opengl:                                 enabled_on
+                    rasterization:                          enabled
+                    raw_draw:                               disabled_off_ok
+                    skia_graphite:                          disabled_off
+                    video_decode:                           enabled
+                    video_encode:                           disabled_software
+                    vulkan:                                 disabled_off
+                    webgl:                                  enabled
+                    webgl2:                                 enabled
+                    webgpu:                                 disabled_off
+                    webnn:                                  disabled_off
 
-CPU %	Mem MB	   PID	Process
-    2	   189	 18772	code main
-    0	    45	 18800	   zygote
-    2	   121	 19189	     gpu-process
-    0	    45	 18801	   zygote
-    0	     8	 18825	     zygote
-    0	    61	 19199	   utility-network-service
-    0	   106	 20078	ptyHost
-    2	   114	 20116	extensionHost [1]
-   21	   114	 20279	shared-process
-    0	     0	 20778	     /usr/bin/zsh -i -l -c '/usr/share/code/code'  -p '"0c1d701e5812" + JSON.stringify(process.env) + "0c1d701e5812"'
-    0	    98	 20294	fileWatcher [1]
+    CPU %	Mem MB	   PID	Process
+        2	   189	 18772	code main
+        0	    45	 18800	   zygote
+        2	   121	 19189	     gpu-process
+        0	    45	 18801	   zygote
+        0	     8	 18825	     zygote
+        0	    61	 19199	   utility-network-service
+        0	   106	 20078	ptyHost
+        2	   114	 20116	extensionHost [1]
+    21	   114	 20279	shared-process
+        0	     0	 20778	     /usr/bin/zsh -i -l -c '/usr/share/code/code'  -p '"0c1d701e5812" + JSON.stringify(process.env) + "0c1d701e5812"'
+        0	    98	 20294	fileWatcher [1]
 
-Workspace Stats:
-|  Window (● solutions.py - tdsproj2 - python - Visual Studio Code)
-|    Folder (tdsproj2): 6878 files
-|      File types: py(3311) pyc(876) pyi(295) so(67) f90(60) txt(41) typed(36)
-|                  csv(31) h(28) f(23)
-|      Conf files:
-"""
+    Workspace Stats:
+    |  Window (● solutions.py - tdsproj2 - python - Visual Studio Code)
+    |    Folder (tdsproj2): 6878 files
+    |      File types: py(3311) pyc(876) pyi(295) so(67) f90(60) txt(41) typed(36)
+    |                  csv(31) h(28) f(23)
+    |      Conf files:
+    """
 
 def make_http_requests_with_uv(arguments):
     url = "https://httpbin.org/get"
@@ -101,16 +101,104 @@ def run_command_with_npx(arguments):
         print(f"Invalid hash algorithm: {hash_algo}")
         return None
 
-
-def use_google_sheets(
-    rows=100, cols=100, start=15, step=12, extract_rows=1, extract_cols=10
-):
+def use_google_sheets(rows=100, cols=100, start=15, step=12, extract_rows=1, extract_cols=10):
     matrix = np.arange(start, start + (rows * cols * step), step).reshape(rows, cols)
 
     extracted_values = matrix[:extract_rows, :extract_cols]
 
     return np.sum(extracted_values)
 
+def calculate_spreadsheet_formula(formula: str, type: str) -> str:
+    """
+    Calculate the result of a spreadsheet formula
+
+    Args:
+        formula: The formula to calculate
+        type: Type of spreadsheet (google_sheets or excel)
+
+    Returns:
+        Result of the formula calculation
+    """
+    try:
+        # Strip the leading = if present
+        if formula.startswith("="):
+            formula = formula[1:]
+
+        # For SEQUENCE function (Google Sheets)
+        if "SEQUENCE" in formula and type == "google_sheets":
+            # Example: SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 5, 2), 1, 10))
+            sequence_pattern = r"SEQUENCE\((\d+),\s*(\d+),\s*(\d+),\s*(\d+)\)"
+            match = re.search(sequence_pattern, formula)
+
+            if match:
+                rows = int(match.group(1))
+                cols = int(match.group(2))
+                start = int(match.group(3))
+                step = int(match.group(4))
+
+                # Generate the sequence
+                sequence = []
+                value = start
+                for _ in range(rows):
+                    row = []
+                    for _ in range(cols):
+                        row.append(value)
+                        value += step
+                    sequence.append(row)
+
+                # Check for ARRAY_CONSTRAIN
+                constrain_pattern = r"ARRAY_CONSTRAIN\([^,]+,\s*(\d+),\s*(\d+)\)"
+                constrain_match = re.search(constrain_pattern, formula)
+
+                if constrain_match:
+                    constrain_rows = int(constrain_match.group(1))
+                    constrain_cols = int(constrain_match.group(2))
+
+                    # Apply constraints
+                    constrained = []
+                    for i in range(min(constrain_rows, len(sequence))):
+                        row = sequence[i][:constrain_cols]
+                        constrained.extend(row)
+
+                    # Check for SUM
+                    if "SUM(" in formula:
+                        return str(sum(constrained))
+
+        # For SORTBY function (Excel)
+        elif "SORTBY" in formula and type == "excel":
+            # Example: SUM(TAKE(SORTBY({1,10,12,4,6,8,9,13,6,15,14,15,2,13,0,3}, {10,9,13,2,11,8,16,14,7,15,5,4,6,1,3,12}), 1, 6))
+
+            # Extract the arrays from SORTBY
+            arrays_pattern = r"SORTBY\(\{([^}]+)\},\s*\{([^}]+)\}\)"
+            arrays_match = re.search(arrays_pattern, formula)
+
+            if arrays_match:
+                values = [int(x.strip()) for x in arrays_match.group(1).split(",")]
+                sort_keys = [int(x.strip()) for x in arrays_match.group(2).split(",")]
+
+                # Sort the values based on sort_keys
+                sorted_pairs = sorted(zip(values, sort_keys), key=lambda x: x[1])
+                sorted_values = [pair[0] for pair in sorted_pairs]
+
+                # Check for TAKE
+                take_pattern = r"TAKE\([^,]+,\s*(\d+),\s*(\d+)\)"
+                take_match = re.search(take_pattern, formula)
+
+                if take_match:
+                    take_start = int(take_match.group(1))
+                    take_count = int(take_match.group(2))
+
+                    # Apply TAKE function
+                    taken = sorted_values[take_start - 1 : take_start - 1 + take_count]
+
+                    # Check for SUM
+                    if "SUM(" in formula:
+                        return str(sum(taken))
+
+        return "Could not parse the formula or unsupported formula type"
+
+    except Exception as e:
+        return f"Error calculating spreadsheet formula: {str(e)}"
 
 def use_excel(values=None, sort_keys=None, num_rows=1, num_elements=9):
     if values is None:
