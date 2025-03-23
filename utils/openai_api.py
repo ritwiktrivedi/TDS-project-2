@@ -1,6 +1,8 @@
 import httpx
 import os
 
+from utils import function_definations_llm
+
 # OpenAI API settings
 openai_api_chat = "http://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
 openai_api_key = os.getenv("AIPROXY_TOKEN")
@@ -10,7 +12,8 @@ headers = {
     "Content-Type": "application/json",
 }
 
-def extract_parameters(prompt: str,function_definitions_llm):
+
+def extract_parameters(prompt: str, function_definitions_llm):
     """Send a user query to OpenAI API and extract structured parameters."""
     with httpx.Client(timeout=20) as client:
         response = client.post(
@@ -38,14 +41,20 @@ def extract_parameters(prompt: str,function_definitions_llm):
         print("No parameters detected")
         return None
 
+
 # Example usage
 queries = [
     "Send a HTTPS request to https://httpbin.org/get with the URL encoded parameter email set to 23f2005217@ds.study.iitm.ac.in",
     "Run npx -y prettier@3.4.2 README.md | sha256sum.",
     "Type this formula in Google Sheets: =SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 15, 12), 1, 10))",
-    "Save the output in output.txt"
 ]
 
-for query in queries:
-    result = extract_parameters(query)
-    print(result)
+function_defs = [
+    "run_command_with_npx",
+    "make_http_requests_with_uv",
+    "use_google_sheets",
+]
+
+# for i in range(len(queries)):
+    # result = extract_parameters(queries[i], function_defs[i])
+    # print(result)

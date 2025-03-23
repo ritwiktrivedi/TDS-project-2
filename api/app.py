@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 import os
-from utils import function_definations_llm
-from utils.file_process import unzip_folder
 from utils.question_matching import find_similar_question
+from utils.file_process import unzip_folder
+from utils.function_definations_llm import function_definitions_objects_llm
 from utils.openai_api import extract_parameters
 from utils.solution_functions import functions_dict
 
@@ -19,7 +19,8 @@ def fun():
 
 @app.route("/api/", methods=["POST"])
 def process_file():
-    question = request.form.get("question")  # Get the question from the form data
+    # Get the question from the form data
+    question = request.form.get("question")
     file = request.files.get("file")  # Get the uploaded file (optional)
     file_names = []
 
@@ -37,14 +38,15 @@ def process_file():
 
     parameters = extract_parameters(
         str(question),
-        function_definitions_llm=function_definations_llm[matched_function],
+        function_definitions_llm=function_definitions_objects_llm[matched_function],
     )  # Function to call OpenAI API and extract parameters
 
     solution_function = functions_dict.get(
         str(matched_function), lambda parameters: "No matching function found"
     )  # the solutions functions name is same as in questions.json
 
-    answer = solution_function(matched_function, parameters, tmp_dir, file_names)
+    answer = solution_function(
+        matched_function, parameters, tmp_dir, file_names)
 
     # Return the answer in JSON format
     return jsonify({"answer": answer})
