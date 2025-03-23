@@ -1,4 +1,4 @@
-{
+function_definitions_objects_llm = {
     "vs_code_version": {
         "name": "vs_code_version",
         "description": "description",
