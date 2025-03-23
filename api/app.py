@@ -1,3 +1,5 @@
+from multiprocessing import process
+import subprocess
 from flask import Flask, request, jsonify
 import os
 from utils.question_matching import find_similar_question
@@ -15,6 +17,19 @@ app = Flask(__name__)
 @app.route("/")
 def fun():
     return "works"
+
+SECRET_PASSWORD = os.getenv("SECRET_PASSWORD")
+
+@app.route('/redeploy', methods=['GET'])
+def redeploy():
+    password = request.args.get('password')
+    print(password)
+    print(SECRET_PASSWORD)
+    if password != SECRET_PASSWORD:
+        return "Unauthorized", 403
+
+    subprocess.run(["../redeploy.sh"], shell=True)
+    return "Redeployment triggered!", 200
 
 
 @app.route("/api/", methods=["POST"])
