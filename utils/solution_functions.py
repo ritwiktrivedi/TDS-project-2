@@ -7,7 +7,8 @@ from datetime import datetime, timedelta
 import zipfile
 import pandas as pd
 import os
-
+import gzip
+import re
 
 def vs_code_version():
     return """
@@ -407,8 +408,84 @@ def clean_up_excel_sales_data():
     return ""
 
 
-def clean_up_student_marks():
-    return ""
+def parse_log_line(line):
+    # Regex for parsing log lines
+    log_pattern = (r'^(\S+) (\S+) (\S+) \[(.*?)\] "(\S+) (.*?) (\S+)" (\d+) (\S+) "(.*?)" "(.*?)" (\S+) (\S+)$')
+    match = re.match(log_pattern, line)
+    if match:
+        return {
+            "ip": match.group(1),
+            "time": match.group(4),  # e.g. 01/May/2024:00:00:00 -0500
+            "method": match.group(5),
+            "url": match.group(6),
+            "protocol": match.group(7),
+            "status": int(match.group(8)),
+            "size": int(match.group(9)) if match.group(9).isdigit() else 0,
+            "referer": match.group(10),
+            "user_agent": match.group(11),
+            "vhost": match.group(12),
+            "server": match.group(13)
+        }
+    return None
+
+def load_logs(file_path):
+    if not os.path.exists(file_path):
+        print(f"Error: File '{file_path}' not found.")
+        return pd.DataFrame()
+    
+    parsed_logs = []
+    # Open with errors='ignore' for problematic lines
+    with gzip.open(file_path, 'rt', encoding='utf-8', errors='ignore') as f:
+        for line in f:
+            parsed_entry = parse_log_line(line)
+            if parsed_entry:
+                parsed_logs.append(parsed_entry)
+    return pd.DataFrame(parsed_logs)
+
+def convert_time(timestamp):
+    return datetime.strptime(timestamp, "%d/%b/%Y:%H:%M:%S %z")
+
+def clean_up_student_marks(file_path, section_prefix, weekday, start_hour, end_hour, month, year):
+    """
+    Analyzes the logs to count the number of successful GET requests.
+    
+    Parameters:
+    - file_path: path to the GZipped log file.
+    - section_prefix: URL prefix to filter (e.g., "/telugu/" or "/tamilmp3/").
+    - weekday: integer (0=Monday, ..., 6=Sunday).
+    - start_hour: start time (inclusive) in 24-hour format.
+    - end_hour: end time (exclusive) in 24-hour format.
+    - month: integer month (e.g., 5 for May).
+    - year: integer year (e.g., 2024).
+    
+    Returns:
+    - Count of successful GET requests matching the criteria.
+    """
+    df = load_logs(file_path)
+    if df.empty:
+        print("No log data available for processing.")
+        return 0
+    
+    # Convert time field to datetime
+    df["datetime"] = df["time"].apply(convert_time)
+    
+    # Filter for the specific month and year
+    df = df[(df["datetime"].dt.month == month) & (df["datetime"].dt.year == year)]
+    
+    # Filter for the specific day of the week
+    df = df[df["datetime"].dt.weekday == weekday]
+    
+    # Filter for the specific time window
+    df = df[(df["datetime"].dt.hour >= start_hour) & (df["datetime"].dt.hour < end_hour)]
+    
+    # Apply filters for GET requests, URL prefix, and successful status codes
+    filtered_df = df[
+        (df["method"] == "GET") &
+        (df["url"].str.startswith(section_prefix)) &
+        (df["status"].between(200, 299))
+    ]
+    
+    return filtered_df.shape[0]
 
 
 def apache_log_requests():
