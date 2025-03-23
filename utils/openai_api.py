@@ -1,3 +1,4 @@
+import json
 import httpx
 import os
 
@@ -28,7 +29,7 @@ def extract_parameters(prompt: str, function_definitions_llm):
                     ],
                     "tools": [
                         {
-                            "type": "function", 
+                            "type": "function",
                             "function": {
                                 "name": function_definitions_llm.get("name", "default_function_name"),
                                 **function_definitions_llm
@@ -38,13 +39,11 @@ def extract_parameters(prompt: str, function_definitions_llm):
                     "tool_choice": "auto"
                 },
             )
-        response.raise_for_status() 
+        response.raise_for_status()
         response_data = response.json()
         if "choices" in response_data and "tool_calls" in response_data["choices"][0]["message"]:
-            print(response_data)
             extracted_data = response_data["choices"][0]["message"]["tool_calls"][0]["function"]
-            print(extracted_data)
-            return extracted_data
+            return json.loads(extracted_data.get("arguments", "{}"))
         else:
             print("No parameters detected")
             return None
@@ -52,7 +51,8 @@ def extract_parameters(prompt: str, function_definitions_llm):
         print(f"An error occurred while making the request: {e}")
         return None
     except httpx.HTTPStatusError as e:
-        print(f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
+        print(
+            f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
         return None
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
@@ -72,7 +72,7 @@ function_defs = [
     # "use_google_sheets",
 ]
 
-for i in range(len(queries)):
-    result = extract_parameters(queries[i], function_definitions_objects_llm[function_defs[i]])
-    # print(function_definitions_objects_llm[function_defs[i]])
-    print(result)
+# for i in range(len(queries)):
+# result = extract_parameters(queries[i], function_definitions_objects_llm[function_defs[i]])
+# print(function_definitions_objects_llm[function_defs[i]])
+# print(result)

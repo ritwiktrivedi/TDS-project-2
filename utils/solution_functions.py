@@ -10,6 +10,7 @@ import os
 import gzip
 import re
 
+
 def vs_code_version():
     return """
     Version:          Code 1.98.2 (ddc367ed5c8936efe395cffeec279b04ffd7db78, 2025-03-12T13:32:45.399Z)
@@ -58,11 +59,9 @@ def vs_code_version():
     |      Conf files:
     """
 
-def make_http_requests_with_uv(arguments):
-    url = "https://httpbin.org/get"
-    params = {"email": "23f2005217@ds.study.iitm.ac.in"}
-    url, params = arguments["url"], arguments["params"]
-    response = requests.get(url, params=params)
+
+def make_http_requests_with_uv(url="https://httpbin.org/get", query_params={"email": "23f2005217@ds.study.iitm.ac.in"}):
+    response = requests.get(url, params=query_params)
     return response.json()
 
 def run_command_with_npx(arguments):
@@ -102,12 +101,15 @@ def run_command_with_npx(arguments):
         print(f"Invalid hash algorithm: {hash_algo}")
         return None
 
+
 def use_google_sheets(rows=100, cols=100, start=15, step=12, extract_rows=1, extract_cols=10):
-    matrix = np.arange(start, start + (rows * cols * step), step).reshape(rows, cols)
+    matrix = np.arange(start, start + (rows * cols * step),
+                       step).reshape(rows, cols)
 
     extracted_values = matrix[:extract_rows, :extract_cols]
 
     return np.sum(extracted_values)
+
 
 def calculate_spreadsheet_formula(formula: str, type: str) -> str:
     try:
@@ -160,11 +162,14 @@ def calculate_spreadsheet_formula(formula: str, type: str) -> str:
             arrays_match = re.search(arrays_pattern, formula)
 
             if arrays_match:
-                values = [int(x.strip()) for x in arrays_match.group(1).split(",")]
-                sort_keys = [int(x.strip()) for x in arrays_match.group(2).split(",")]
+                values = [int(x.strip())
+                          for x in arrays_match.group(1).split(",")]
+                sort_keys = [int(x.strip())
+                             for x in arrays_match.group(2).split(",")]
 
                 # Sort the values based on sort_keys
-                sorted_pairs = sorted(zip(values, sort_keys), key=lambda x: x[1])
+                sorted_pairs = sorted(
+                    zip(values, sort_keys), key=lambda x: x[1])
                 sorted_values = [pair[0] for pair in sorted_pairs]
 
                 # Check for TAKE
@@ -176,7 +181,8 @@ def calculate_spreadsheet_formula(formula: str, type: str) -> str:
                     take_count = int(take_match.group(2))
 
                     # Apply TAKE function
-                    taken = sorted_values[take_start - 1 : take_start - 1 + take_count]
+                    taken = sorted_values[take_start -
+                                          1: take_start - 1 + take_count]
 
                     # Check for SUM
                     if "SUM(" in formula:
@@ -187,11 +193,14 @@ def calculate_spreadsheet_formula(formula: str, type: str) -> str:
     except Exception as e:
         return f"Error calculating spreadsheet formula: {str(e)}"
 
+
 def use_excel(values=None, sort_keys=None, num_rows=1, num_elements=9):
     if values is None:
-        values = np.array([13, 12, 0, 14, 2, 12, 9, 15, 1, 7, 3, 10, 9, 15, 2, 0])
+        values = np.array(
+            [13, 12, 0, 14, 2, 12, 9, 15, 1, 7, 3, 10, 9, 15, 2, 0])
     if sort_keys is None:
-        sort_keys = np.array([10, 9, 13, 2, 11, 8, 16, 14, 7, 15, 5, 4, 6, 1, 3, 12])
+        sort_keys = np.array(
+            [10, 9, 13, 2, 11, 8, 16, 14, 7, 15, 5, 4, 6, 1, 3, 12])
 
     sorted_values = values[np.argsort(sort_keys)]
     return np.sum(sorted_values[:num_elements])
@@ -410,7 +419,8 @@ def clean_up_excel_sales_data():
 
 def parse_log_line(line):
     # Regex for parsing log lines
-    log_pattern = (r'^(\S+) (\S+) (\S+) \[(.*?)\] "(\S+) (.*?) (\S+)" (\d+) (\S+) "(.*?)" "(.*?)" (\S+) (\S+)$')
+    log_pattern = (
+        r'^(\S+) (\S+) (\S+) \[(.*?)\] "(\S+) (.*?) (\S+)" (\d+) (\S+) "(.*?)" "(.*?)" (\S+) (\S+)$')
     match = re.match(log_pattern, line)
     if match:
         return {
@@ -428,11 +438,12 @@ def parse_log_line(line):
         }
     return None
 
+
 def load_logs(file_path):
     if not os.path.exists(file_path):
         print(f"Error: File '{file_path}' not found.")
         return pd.DataFrame()
-    
+
     parsed_logs = []
     # Open with errors='ignore' for problematic lines
     with gzip.open(file_path, 'rt', encoding='utf-8', errors='ignore') as f:
@@ -442,13 +453,15 @@ def load_logs(file_path):
                 parsed_logs.append(parsed_entry)
     return pd.DataFrame(parsed_logs)
 
+
 def convert_time(timestamp):
     return datetime.strptime(timestamp, "%d/%b/%Y:%H:%M:%S %z")
+
 
 def clean_up_student_marks(file_path, section_prefix, weekday, start_hour, end_hour, month, year):
     """
     Analyzes the logs to count the number of successful GET requests.
-    
+
     Parameters:
     - file_path: path to the GZipped log file.
     - section_prefix: URL prefix to filter (e.g., "/telugu/" or "/tamilmp3/").
@@ -457,7 +470,7 @@ def clean_up_student_marks(file_path, section_prefix, weekday, start_hour, end_h
     - end_hour: end time (exclusive) in 24-hour format.
     - month: integer month (e.g., 5 for May).
     - year: integer year (e.g., 2024).
-    
+
     Returns:
     - Count of successful GET requests matching the criteria.
     """
@@ -465,26 +478,28 @@ def clean_up_student_marks(file_path, section_prefix, weekday, start_hour, end_h
     if df.empty:
         print("No log data available for processing.")
         return 0
-    
+
     # Convert time field to datetime
     df["datetime"] = df["time"].apply(convert_time)
-    
+
     # Filter for the specific month and year
-    df = df[(df["datetime"].dt.month == month) & (df["datetime"].dt.year == year)]
-    
+    df = df[(df["datetime"].dt.month == month)
+            & (df["datetime"].dt.year == year)]
+
     # Filter for the specific day of the week
     df = df[df["datetime"].dt.weekday == weekday]
-    
+
     # Filter for the specific time window
-    df = df[(df["datetime"].dt.hour >= start_hour) & (df["datetime"].dt.hour < end_hour)]
-    
+    df = df[(df["datetime"].dt.hour >= start_hour)
+            & (df["datetime"].dt.hour < end_hour)]
+
     # Apply filters for GET requests, URL prefix, and successful status codes
     filtered_df = df[
         (df["method"] == "GET") &
         (df["url"].str.startswith(section_prefix)) &
         (df["status"].between(200, 299))
     ]
-    
+
     return filtered_df.shape[0]
 
 
@@ -518,6 +533,7 @@ def transcribe_a_youtube_video():
 
 def reconstruct_an_image():
     return ""
+
 
 functions_dict = {
     "vs_code_version": vs_code_version,

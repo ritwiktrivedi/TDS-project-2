@@ -16,7 +16,7 @@ function_definitions_objects_llm = {
 
     "make_http_requests_with_uv": {
         "name": "make_http_requests_with_uv",
-        "description": "extract the http url and query parameters from the given text",
+        "description": "extract the http url and query parameters from the given text for example 'uv run --with httpie -- https [URL] installs the Python package httpie and sends a HTTPS request to the URL. Send a HTTPS request to https://httpbin.org/get with the URL encoded parameter country set to India and city set to Chennai. What is the JSON output of the command? (Paste only the JSON body, not the headers)' in this example country: India and city: Chennai are the query parameters",
         "parameters": {
             "type": "object",
             "properties": {
@@ -28,12 +28,8 @@ function_definitions_objects_llm = {
                     "type": "object",
                     "description": "The query parameters to send with the request URL encoded parameters"
                 },
-                "email": {
-                    "type": "string",
-                    "description": "The email to send with the request"
-                }
             },
-            "required": ["url", "query_params", "email"]
+            "required": ["url", "query_params"]
         }
     },
 
