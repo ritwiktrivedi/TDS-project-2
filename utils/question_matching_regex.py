@@ -951,6 +951,20 @@ As long as the LLM says the word Yes (case sensitive), you will be marked correc
     Upload the reconstructed image by moving the pieces from the scrambled position to the original position:""",
 ]
 
+files = {
+    1: [],
+    2: [],
+    3: ["README.md"],
+    4: [],
+    5: [],
+    6: [],
+    7: [],
+    8: ["extract.csv"],
+    9: [],
+    10: ["q-multi-cursor-json.txt"],
+    11: [],
+}
+
 import json
 
 data = {}
@@ -981,4 +995,4 @@ for i in range(len(titles)):
     )
 
 with open("/home/gir/Desktop/tdsproj2/data/questions.json", "w") as f:
-  json.dump(data, f)
+    json.dump(data, f)

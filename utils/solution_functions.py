@@ -109,22 +109,10 @@ def use_google_sheets(rows=100, cols=100, start=15, step=12, extract_rows=1, ext
     return np.sum(extracted_values)
 
 def calculate_spreadsheet_formula(formula: str, type: str) -> str:
-    """
-    Calculate the result of a spreadsheet formula
-
-    Args:
-        formula: The formula to calculate
-        type: Type of spreadsheet (google_sheets or excel)
-
-    Returns:
-        Result of the formula calculation
-    """
     try:
-        # Strip the leading = if present
         if formula.startswith("="):
             formula = formula[1:]
 
-        # For SEQUENCE function (Google Sheets)
         if "SEQUENCE" in formula and type == "google_sheets":
             # Example: SUM(ARRAY_CONSTRAIN(SEQUENCE(100, 100, 5, 2), 1, 10))
             sequence_pattern = r"SEQUENCE\((\d+),\s*(\d+),\s*(\d+),\s*(\d+)\)"
@@ -160,11 +148,9 @@ def calculate_spreadsheet_formula(formula: str, type: str) -> str:
                         row = sequence[i][:constrain_cols]
                         constrained.extend(row)
 
-                    # Check for SUM
                     if "SUM(" in formula:
                         return str(sum(constrained))
 
-        # For SORTBY function (Excel)
         elif "SORTBY" in formula and type == "excel":
             # Example: SUM(TAKE(SORTBY({1,10,12,4,6,8,9,13,6,15,14,15,2,13,0,3}, {10,9,13,2,11,8,16,14,7,15,5,4,6,1,3,12}), 1, 6))
 
