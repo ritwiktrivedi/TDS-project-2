@@ -1,971 +1,864 @@
-function_definitions_objects_llm = {
+{
     "vs_code_version": {
-        "type": "function",
-        "function": {
-            "name": "vs_code_version",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "vs_code_version",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "make_http_requests_with_uv": {
-        "type": "function",
-        "function": {
-            "name": "make_http_requests_with_uv",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
+        "name": "make_http_requests_with_uv",
+        "description": "extract the http url and query parameters from the given text",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "The email address to send the request to"
                 },
-                "required": ["command"],
+                "url": {
+                    "type": "string",
+                    "description": "The URL to send the request to"
+                },
+                "query_params": {
+                    "type": "object",
+                    "description": "The query parameters to send with the request"
+                }
             },
-        },
+            "required": ["email", "url"]
+        }
     },
+
     "run_command_with_npx": {
-        "type": "function",
-        "function": {
-            "name": "run_command_with_npx",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "run_command_with_npx",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_google_sheets": {
-        "type": "function",
-        "function": {
-            "name": "use_google_sheets",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_google_sheets",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_excel": {
-        "type": "function",
-        "function": {
-            "name": "use_excel",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_excel",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_devtools": {
-        "type": "function",
-        "function": {
-            "name": "use_devtools",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_devtools",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "count_wednesdays": {
-        "type": "function",
-        "function": {
-            "name": "count_wednesdays",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "count_wednesdays",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "extract_csv_from_a_zip": {
-        "type": "function",
-        "function": {
-            "name": "extract_csv_from_a_zip",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "extract_csv_from_a_zip",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_json": {
-        "type": "function",
-        "function": {
-            "name": "use_json",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_json",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "multi_cursor_edits_to_convert_to_json": {
-        "type": "function",
-        "function": {
-            "name": "multi_cursor_edits_to_convert_to_json",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "multi_cursor_edits_to_convert_to_json",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "css_selectors": {
-        "type": "function",
-        "function": {
-            "name": "css_selectors",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "css_selectors",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "process_files_with_different_encodings": {
-        "type": "function",
-        "function": {
-            "name": "process_files_with_different_encodings",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "process_files_with_different_encodings",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_github": {
-        "type": "function",
-        "function": {
-            "name": "use_github",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_github",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "replace_across_files": {
-        "type": "function",
-        "function": {
-            "name": "replace_across_files",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "replace_across_files",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "list_files_and_attributes": {
-        "type": "function",
-        "function": {
-            "name": "list_files_and_attributes",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "list_files_and_attributes",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "move_and_rename_files": {
-        "type": "function",
-        "function": {
-            "name": "move_and_rename_files",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "move_and_rename_files",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "compare_files": {
-        "type": "function",
-        "function": {
-            "name": "compare_files",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "compare_files",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "sql_ticket_sales": {
-        "type": "function",
-        "function": {
-            "name": "sql_ticket_sales",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "sql_ticket_sales",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "write_documentation_in_markdown": {
-        "type": "function",
-        "function": {
-            "name": "write_documentation_in_markdown",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "write_documentation_in_markdown",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "compress_an_image": {
-        "type": "function",
-        "function": {
-            "name": "compress_an_image",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "compress_an_image",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "host_your_portfolio_on_github_pages": {
-        "type": "function",
-        "function": {
-            "name": "host_your_portfolio_on_github_pages",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "host_your_portfolio_on_github_pages",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_google_colab": {
-        "type": "function",
-        "function": {
-            "name": "use_google_colab",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_google_colab",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "use_an_image_library_in_google_colab": {
-        "type": "function",
-        "function": {
-            "name": "use_an_image_library_in_google_colab",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "use_an_image_library_in_google_colab",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "deploy_a_python_api_to_vercel": {
-        "type": "function",
-        "function": {
-            "name": "deploy_a_python_api_to_vercel",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "deploy_a_python_api_to_vercel",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "create_a_github_action": {
-        "type": "function",
-        "function": {
-            "name": "create_a_github_action",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "create_a_github_action",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "push_an_image_to_docker_hub": {
-        "type": "function",
-        "function": {
-            "name": "push_an_image_to_docker_hub",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "push_an_image_to_docker_hub",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "write_a_fastapi_server_to_serve_data": {
-        "type": "function",
-        "function": {
-            "name": "write_a_fastapi_server_to_serve_data",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "write_a_fastapi_server_to_serve_data",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "run_a_local_llm_with_llamafile": {
-        "type": "function",
-        "function": {
-            "name": "run_a_local_llm_with_llamafile",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "run_a_local_llm_with_llamafile",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "llm_sentiment_analysis": {
-        "type": "function",
-        "function": {
-            "name": "llm_sentiment_analysis",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "llm_sentiment_analysis",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "llm_token_cost": {
-        "type": "function",
-        "function": {
-            "name": "llm_token_cost",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "llm_token_cost",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "generate_addresses_with_llms": {
-        "type": "function",
-        "function": {
-            "name": "generate_addresses_with_llms",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "generate_addresses_with_llms",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "llm_vision": {
-        "type": "function",
-        "function": {
-            "name": "llm_vision",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "llm_vision",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "llm_embeddings": {
-        "type": "function",
-        "function": {
-            "name": "llm_embeddings",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "llm_embeddings",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "embedding_similarity": {
-        "type": "function",
-        "function": {
-            "name": "embedding_similarity",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "embedding_similarity",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "vector_databases": {
-        "type": "function",
-        "function": {
-            "name": "vector_databases",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "vector_databases",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "function_calling": {
-        "type": "function",
-        "function": {
-            "name": "function_calling",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "function_calling",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "get_an_llm_to_say_yes": {
-        "type": "function",
-        "function": {
-            "name": "get_an_llm_to_say_yes",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "get_an_llm_to_say_yes",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "import_html_to_google_sheets": {
-        "type": "function",
-        "function": {
-            "name": "import_html_to_google_sheets",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "import_html_to_google_sheets",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "scrape_imdb_movies": {
-        "type": "function",
-        "function": {
-            "name": "scrape_imdb_movies",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "scrape_imdb_movies",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "wikipedia_outline": {
-        "type": "function",
-        "function": {
-            "name": "wikipedia_outline",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "wikipedia_outline",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "scrape_the_bbc_weather_api": {
-        "type": "function",
-        "function": {
-            "name": "scrape_the_bbc_weather_api",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "scrape_the_bbc_weather_api",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "find_the_bounding_box_of_a_city": {
-        "type": "function",
-        "function": {
-            "name": "find_the_bounding_box_of_a_city",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "find_the_bounding_box_of_a_city",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "search_hacker_news": {
-        "type": "function",
-        "function": {
-            "name": "search_hacker_news",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "search_hacker_news",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "find_newest_github_user": {
-        "type": "function",
-        "function": {
-            "name": "find_newest_github_user",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "find_newest_github_user",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "create_a_scheduled_github_action": {
-        "type": "function",
-        "function": {
-            "name": "create_a_scheduled_github_action",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "create_a_scheduled_github_action",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "extract_tables_from_pdf": {
-        "type": "function",
-        "function": {
-            "name": "extract_tables_from_pdf",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "extract_tables_from_pdf",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "convert_a_pdf_to_markdown": {
-        "type": "function",
-        "function": {
-            "name": "convert_a_pdf_to_markdown",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "convert_a_pdf_to_markdown",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "clean_up_excel_sales_data": {
-        "type": "function",
-        "function": {
-            "name": "clean_up_excel_sales_data",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "clean_up_excel_sales_data",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "clean_up_student_marks": {
-        "type": "function",
-        "function": {
-            "name": "clean_up_student_marks",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "clean_up_student_marks",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "apache_log_requests": {
-        "type": "function",
-        "function": {
-            "name": "apache_log_requests",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "apache_log_requests",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "apache_log_downloads": {
-        "type": "function",
-        "function": {
-            "name": "apache_log_downloads",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "apache_log_downloads",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "clean_up_sales_data": {
-        "type": "function",
-        "function": {
-            "name": "clean_up_sales_data",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "clean_up_sales_data",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "parse_partial_json": {
-        "type": "function",
-        "function": {
-            "name": "parse_partial_json",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "parse_partial_json",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "extract_nested_json_keys": {
-        "type": "function",
-        "function": {
-            "name": "extract_nested_json_keys",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "extract_nested_json_keys",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "duckdb_social_media_interactions": {
-        "type": "function",
-        "function": {
-            "name": "duckdb_social_media_interactions",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "duckdb_social_media_interactions",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "transcribe_a_youtube_video": {
-        "type": "function",
-        "function": {
-            "name": "transcribe_a_youtube_video",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "transcribe_a_youtube_video",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
+
     "reconstruct_an_image": {
-        "type": "function",
-        "function": {
-            "name": "reconstruct_an_image",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
+        "name": "reconstruct_an_image",
+        "description": "description",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "text": {
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }
             },
-        },
+            "required": ["text"]
+        }
     },
 }

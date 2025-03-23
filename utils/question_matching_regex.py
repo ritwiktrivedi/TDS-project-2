@@ -988,11 +988,57 @@ for i in range(len(titles)):
     data[function_case(titles[i])] = (
         {
             "description": questions[i],
-            "files": [],
         }
         if i < len(questions)
         else {"description": "", "files": []}
     )
 
-with open("/home/gir/Desktop/tdsproj2/data/questions.json", "w") as f:
-    json.dump(data, f)
+# with open("/home/gir/Desktop/tdsproj2/data/questions.json", "w") as f:
+#     json.dump(data, f)
+
+# create objects like this 
+# "make_http_requests_with_uv": {
+#         "name": "make_http_requests_with_uv",
+#         "description": "extract the http url and query parameters from the given text",
+#         "parameters": {
+#             "type": "object",
+#             "properties": {
+#                 "email": {
+#                     "type": "string",
+#                     "description": "The email address to send the request to"
+#                 },
+#                 "url": {
+#                     "type": "string",
+#                     "description": "The URL to send the request to"
+#                 },
+#                 "query_params": {
+#                     "type": "object",
+#                     "description": "The query parameters to send with the request"
+#                 }
+#             },
+#             "required": ["email", "url"]
+#         }
+#     },
+
+objects = """{"""
+
+for i in range(len(titles)):
+    objects += f"""
+    "{function_case(titles[i])}": {{
+        "name": "{function_case(titles[i])}",
+        "description": "description",
+        "parameters": {{
+            "type": "object",
+            "properties": {{
+                "text": {{
+                    "type": "string",
+                    "description": "The text to extract the data from"
+                }}
+            }},
+            "required": ["text"]
+        }}
+    }},
+    """
+
+objects += """}"""
+print(objects)
