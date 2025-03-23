@@ -20,20 +20,20 @@ function_definitions_objects_llm = {
         "parameters": {
             "type": "object",
             "properties": {
-                "email": {
-                    "type": "string",
-                    "description": "The email address to send the request to"
-                },
                 "url": {
                     "type": "string",
                     "description": "The URL to send the request to"
                 },
                 "query_params": {
                     "type": "object",
-                    "description": "The query parameters to send with the request"
+                    "description": "The query parameters to send with the request URL encoded parameters"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email to send with the request"
                 }
             },
-            "required": ["email", "url"]
+            "required": ["url", "query_params", "email"]
         }
     },
 
