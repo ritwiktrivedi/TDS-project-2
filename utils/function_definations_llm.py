@@ -819,35 +819,50 @@ function_definitions_objects_llm = {
         "type": "function",
         "function": {
             "name": "clean_up_student_marks",
-            "description": "description",
+            "description": "Analyzes logs to count the number of successful GET requests matching criteria such as URL prefix, weekday, time window, month, and year.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "command": {
+                    "file_path": {
                         "type": "string",
-                        "description": "The command to execute",
+                        "description": "Path to the gzipped log file."
+                    },
+                    "section_prefix": {
+                        "type": "string",
+                        "description": "URL prefix to filter log entries (e.g., '/telugu/')."
+                    },
+                    "weekday": {
+                        "type": "integer",
+                        "description": "Day of the week as an integer (0=Monday, ..., 6=Sunday)."
+                    },
+                    "start_hour": {
+                        "type": "integer",
+                        "description": "Start hour (inclusive) in 24-hour format."
+                    },
+                    "end_hour": {
+                        "type": "integer",
+                        "description": "End hour (exclusive) in 24-hour format."
+                    },
+                    "month": {
+                        "type": "integer",
+                        "description": "Month number (e.g., 5 for May)."
+                    },
+                    "year": {
+                        "type": "integer",
+                        "description": "Year (e.g., 2024)."
                     }
                 },
-                "required": ["command"],
-            },
-        },
-    },
-    "apache_log_requests": {
-        "type": "function",
-        "function": {
-            "name": "apache_log_requests",
-            "description": "description",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The command to execute",
-                    }
-                },
-                "required": ["command"],
-            },
-        },
+                "required": [
+                    "file_path",
+                    "section_prefix",
+                    "weekday",
+                    "start_hour",
+                    "end_hour",
+                    "month",
+                    "year"
+                ]
+            }
+        }
     },
     "apache_log_downloads": {
         "type": "function",
