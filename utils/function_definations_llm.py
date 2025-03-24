@@ -719,10 +719,10 @@ function_definitions_objects_llm = {
         }
     },
 
-    "clean_up_student_marks": {
+    "apache_log_downloads": {
         "type": "function",
         "function": {
-            "name": "clean_up_student_marks",
+            "name": "apache_log_downloads",
             "description": "Analyzes logs to count the number of successful GET requests matching criteria such as URL prefix, weekday, time window, month, and year.",
             "parameters": {
                 "type": "object",
@@ -769,8 +769,8 @@ function_definitions_objects_llm = {
         }
     },
 
-    "apache_log_downloads": {
-        "name": "apache_log_downloads",
+    "clean_up_student_marks": {
+        "name": "clean_up_student_marks",
         "description": "description",
         "parameters": {
             "type": "object",
@@ -799,18 +799,31 @@ function_definitions_objects_llm = {
         }
     },
 
+
     "parse_partial_json": {
         "name": "parse_partial_json",
-        "description": "description",
+        "description": "Aggregates the numeric values of a specified key from a JSONL file and returns the total sum",
         "parameters": {
-            "type": "object",
-            "properties": {
-                "text": {
-                    "type": "string",
-                    "description": "The text to extract the data from"
-                }
+        "type": "object",
+        "properties": {
+            "file_path": {
+            "type": "string",
+            "description": "The path to the JSONL file to be processed."
             },
-            "required": ["text"]
+            "key": {
+            "type": "string",
+            "description": "The JSON key whose numeric values will be summed. Defaults to 'sales'.",
+            },
+            "num_rows": {
+            "type": "integer",
+            "description": "The expected number of rows for validation. Defaults to 100.",
+            },
+            "regex_pattern": {
+            "type": "string",
+            "description": "An custom regex pattern to extract the numeric value."
+            }
+        },
+        "required": ["file_path","key", "num_rows", "regex_pattern"]
         }
     },
 

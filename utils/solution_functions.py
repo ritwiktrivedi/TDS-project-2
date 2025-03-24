@@ -9,6 +9,7 @@ import pandas as pd
 import os
 import gzip
 import re
+import json
 
 from utils.file_process import unzip_folder
 
@@ -465,7 +466,7 @@ def convert_time(timestamp):
     return datetime.strptime(timestamp, "%d/%b/%Y:%H:%M:%S %z")
 
 
-def clean_up_student_marks(file_path, section_prefix, weekday, start_hour, end_hour, month, year):
+def apache_log_downloads(file_path, section_prefix, weekday, start_hour, end_hour, month, year):
     """
     Analyzes the logs to count the number of successful GET requests.
 
@@ -514,7 +515,7 @@ def apache_log_requests():
     return ""
 
 
-def apache_log_downloads():
+def clean_up_student_marks():
     return ""
 
 
@@ -522,8 +523,51 @@ def clean_up_sales_data():
     return ""
 
 
-def parse_partial_json():
-    return ""
+def parse_partial_json(file_path, key, num_rows, regex_pattern):
+    """
+    Aggregates the numeric values of a specified key from a JSONL file.
+    
+    Parameters:
+      file_path (str): The path to the JSONL file.
+      key (str): The JSON key whose numeric values will be summed.
+      num_rows (int): Expected number of rows.
+      regex_pattern (str): A custom regex pattern. If None, a default for the key is used.
+      
+    Returns:
+      total (float): The aggregated sum of the numeric values. Type casting it to int at the end.
+    """
+    total = 0
+    valid_rows = 0
+    error_rows = 0
+
+
+    pattern = re.compile(regex_pattern)
+
+    with open(file_path, 'r') as file:
+        for line in file:
+            line = line.strip()
+            if not line:
+                continue
+
+            # Use regex to search for the numeric value.
+            match = pattern.search(line)
+            if match:
+                try:
+                    # Convert the captured value to float
+                    value = float(match.group(1))
+                    total += value
+                    valid_rows += 1
+                except Exception as e:
+                    error_rows += 1
+            else:
+                error_rows += 1
+
+    # Optionally, you might want to log a warning if the number of valid rows isn't as expected.
+    if valid_rows != num_rows:
+        print(f"Warning: Expected {num_rows} rows, but processed {valid_rows} valid rows.")
+
+    return int(total)
+
 
 
 def extract_nested_json_keys():
