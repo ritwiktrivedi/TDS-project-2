@@ -14,27 +14,10 @@ os.makedirs(tmp_dir, exist_ok=True)
 app = Flask(__name__)
 
 
-@app.route("/")
-def fun():
-    return "works"
-
-
 SECRET_PASSWORD = os.getenv("SECRET_PASSWORD")
 
 
-@app.route('/redeploy', methods=['GET'])
-def redeploy():
-    password = request.args.get('password')
-    print(password)
-    print(SECRET_PASSWORD)
-    if password != SECRET_PASSWORD:
-        return "Unauthorized", 403
-
-    subprocess.run(["../redeploy.sh"], shell=True)
-    return "Redeployment triggered!", 200
-
-
-@app.route("/api/", methods=["POST"])
+@app.route("/", methods=["POST"])
 def process_file():
     question = request.form.get("question")
     file = request.files.get("file")  # Get the uploaded file (optional)
@@ -65,6 +48,18 @@ def process_file():
         answer = solution_function(*parameters)
         print(type(parameters),parameters)
     return jsonify({"answer": answer})
+
+
+@app.route('/redeploy', methods=['GET'])
+def redeploy():
+    password = request.args.get('password')
+    print(password)
+    print(SECRET_PASSWORD)
+    if password != SECRET_PASSWORD:
+        return "Unauthorized", 403
+
+    subprocess.run(["../redeploy.sh"], shell=True)
+    return "Redeployment triggered!", 200
 
 
 if __name__ == "__main__":
