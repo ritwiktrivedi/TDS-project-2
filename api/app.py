@@ -26,28 +26,31 @@ def process_file():
     # Ensure tmp_dir is always assigned
     tmp_dir = "tmp_uploads"
 
-    matched_function, matched_description, matched_files = find_similar_question(
-        question)
+    try:
+        matched_function, matched_description, matched_files = find_similar_question(question)
 
-    if file:
-        temp_dir, file_names = unzip_folder(file)
-        tmp_dir = temp_dir  # Update tmp_dir if a file is uploaded
+        if file:
+            temp_dir, file_names = unzip_folder(file)
+            tmp_dir = temp_dir  # Update tmp_dir if a file is uploaded
 
-    parameters = extract_parameters(
-        str(question),
-        function_definitions_llm=function_definitions_objects_llm[matched_function],
-    )
+        parameters = extract_parameters(
+            str(question),
+            function_definitions_llm=function_definitions_objects_llm[matched_function],
+        )
 
-    solution_function = functions_dict.get(
-        str(matched_function), lambda parameters: "No matching function found"
-    )
+        solution_function = functions_dict.get(
+            str(matched_function), lambda parameters: "No matching function found"
+        )
 
-    if file:
-        answer = solution_function(file, *parameters)
-    else:
-        answer = solution_function(*parameters)
-        print(type(parameters),parameters)
-    return jsonify({"answer": answer})
+        if file:
+            answer = solution_function(file, *parameters)
+        else:
+            print(type(parameters), parameters)
+            answer = solution_function(*parameters)
+        return jsonify({"answer": answer})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/redeploy', methods=['GET'])

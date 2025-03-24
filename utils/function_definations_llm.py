@@ -20,16 +20,12 @@ function_definitions_objects_llm = {
         "parameters": {
             "type": "object",
             "properties": {
-                "url": {
-                    "type": "string",
-                    "description": "The URL to send the request to"
-                },
                 "query_params": {
                     "type": "object",
                     "description": "The query parameters to send with the request URL encoded parameters"
                 },
             },
-            "required": ["url", "query_params"]
+            "required": ["query_params","url"]
         }
     },
 

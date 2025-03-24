@@ -10,6 +10,8 @@ import os
 import gzip
 import re
 
+from utils.file_process import unzip_folder
+
 
 def vs_code_version():
     return """
@@ -61,8 +63,13 @@ def vs_code_version():
 
 
 def make_http_requests_with_uv(url="https://httpbin.org/get", query_params={"email": "23f2005217@ds.study.iitm.ac.in"}):
-    response = requests.get(url, params=query_params)
-    return response.json()
+    print(url)
+    try:
+        response = requests.get(url, params=query_params)
+        return response.json()
+    except requests.RequestException as e:
+        print(f"HTTP request failed: {e}")
+        return None
 
 def run_command_with_npx(arguments):
     filePath, prettier_version, hash_algo, use_npx = (
