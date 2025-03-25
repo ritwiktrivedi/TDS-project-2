@@ -11,7 +11,6 @@ def find_similar_question(input_question):
 
     question_keys = list(questions_json.keys())
     question_descriptions = [questions_json[key]["description"] for key in question_keys]
-    question_files = [questions_json[key]["files"] for key in question_keys]
 
     vectorizer = TfidfVectorizer()
     tfidf_matrix = vectorizer.fit_transform(question_descriptions)
@@ -23,7 +22,7 @@ def find_similar_question(input_question):
     most_similar_question = question_keys[most_similar_question_index]
     most_similar_question_description = question_descriptions[most_similar_question_index]
 
-    return (most_similar_question, most_similar_question_description, question_files[most_similar_question_index])
+    return (most_similar_question, most_similar_question_description)
 
 
 # Example usage

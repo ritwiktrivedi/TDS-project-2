@@ -5,12 +5,9 @@ function_definitions_objects_llm = {
         "parameters": {
             "type": "object",
             "properties": {
-                "text": {
-                    "type": "string",
-                    "description": "The text to extract the data from"
-                }
+                
             },
-            "required": ["text"]
+            "required": [""]
         }
     },
 
