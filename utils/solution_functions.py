@@ -466,7 +466,7 @@ def convert_time(timestamp):
     return datetime.strptime(timestamp, "%d/%b/%Y:%H:%M:%S %z")
 
 
-def apache_log_downloads(file_path, section_prefix, weekday, start_hour, end_hour, month, year):
+def apache_log_downloads(file_path="s-anand.net-May-2024.gz", section_prefix="/", weekday=0, start_hour=0, end_hour=24, month=1, year=2020):
     """
     Analyzes the logs to count the number of successful GET requests.
 
@@ -482,34 +482,36 @@ def apache_log_downloads(file_path, section_prefix, weekday, start_hour, end_hou
     Returns:
     - Count of successful GET requests matching the criteria.
     """
-    df = load_logs(file_path)
-    if df.empty:
-        print("No log data available for processing.")
-        return 0
+    try :
+        df = load_logs(file_path)
+        if df.empty:
+            print("No log data available for processing.")
+            return 0
 
-    # Convert time field to datetime
-    df["datetime"] = df["time"].apply(convert_time)
+        # Convert time field to datetime
+        df["datetime"] = df["time"].apply(convert_time)
 
-    # Filter for the specific month and year
-    df = df[(df["datetime"].dt.month == month)
-            & (df["datetime"].dt.year == year)]
+        # Filter for the specific month and year
+        df = df[(df["datetime"].dt.month == month)
+                & (df["datetime"].dt.year == year)]
 
-    # Filter for the specific day of the week
-    df = df[df["datetime"].dt.weekday == weekday]
+        # Filter for the specific day of the week
+        df = df[df["datetime"].dt.weekday == weekday]
 
-    # Filter for the specific time window
-    df = df[(df["datetime"].dt.hour >= start_hour)
-            & (df["datetime"].dt.hour < end_hour)]
+        # Filter for the specific time window
+        df = df[(df["datetime"].dt.hour >= start_hour)
+                & (df["datetime"].dt.hour < end_hour)]
 
-    # Apply filters for GET requests, URL prefix, and successful status codes
-    filtered_df = df[
-        (df["method"] == "GET") &
-        (df["url"].str.startswith(section_prefix)) &
-        (df["status"].between(200, 299))
-    ]
-
-    return filtered_df.shape[0]
-
+        # Apply filters for GET requests, URL prefix, and successful status codes
+        filtered_df = df[
+            (df["method"] == "GET") &
+            (df["url"].str.startswith(section_prefix)) &
+            (df["status"].between(200, 299))
+        ]
+                
+        return filtered_df.shape[0]
+    except Exception as e:
+        return f"Error: {e}"
 
 def apache_log_requests():
     return ""
@@ -523,7 +525,7 @@ def clean_up_sales_data():
     return ""
 
 
-def parse_partial_json(file_path, key, num_rows, regex_pattern):
+def parse_partial_json(file_path="q-parse-partial-json.jsonl", key="sales", num_rows=100, regex_pattern=None):
     """
     Aggregates the numeric values of a specified key from a JSONL file.
     
@@ -540,31 +542,41 @@ def parse_partial_json(file_path, key, num_rows, regex_pattern):
     valid_rows = 0
     error_rows = 0
 
+    # Create a regex pattern to extract the numeric value.
+    # If no custom pattern is provided, we assume the JSON line contains something like "key": some_number.
+    if regex_pattern is None:
+        pattern = re.compile(r'"{}"\s*:\s*([\d\.]+)'.format(re.escape(key)))
+    else:
+        pattern = re.compile(regex_pattern)
 
-    pattern = re.compile(regex_pattern)
+    try:
+        with open(file_path, 'r') as file:
+            for line_number, line in enumerate(file, start=1):
+                line = line.strip()
+                if not line:
+                    continue
 
-    with open(file_path, 'r') as file:
-        for line in file:
-            line = line.strip()
-            if not line:
-                continue
-
-            # Use regex to search for the numeric value.
-            match = pattern.search(line)
-            if match:
-                try:
-                    # Convert the captured value to float
-                    value = float(match.group(1))
-                    total += value
-                    valid_rows += 1
-                except Exception as e:
+                match = pattern.search(line)
+                if match:
+                    try:
+                        # Convert the captured value to float and add to total.
+                        value = float(match.group(1))
+                        total += value
+                        valid_rows += 1
+                    except ValueError as ve:
+                        print(f"Line {line_number}: Cannot convert value to float. Error: {ve}")
+                        error_rows += 1
+                else:
+                    print(f"Line {line_number}: No match found for key '{key}'.")
                     error_rows += 1
-            else:
-                error_rows += 1
+    except FileNotFoundError:
+        return (f"File not found: {file_path}")
+    except Exception as e:
+        return (f"Unexpected error while processing the file: {e}")
 
     # Optionally, you might want to log a warning if the number of valid rows isn't as expected.
     if valid_rows != num_rows:
-        print(f"Warning: Expected {num_rows} rows, but processed {valid_rows} valid rows.")
+        return (f"Warning: Expected {num_rows} rows, but processed {valid_rows} valid rows.")
 
     return int(total)
 
