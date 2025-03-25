@@ -802,25 +802,25 @@ function_definitions_objects_llm = {
 
     "parse_partial_json": {
         "name": "parse_partial_json",
-        "description": "Aggregates the numeric values of a specified key from a JSONL file and returns the total sum",
+        "description": "Aggregates the numeric values of a specified key from a JSONL file and returns the total sum. This function is intended for processing digitized OCR data from sales receipts, where some entries may be truncated. It extracts the numeric value from each row based on the provided key and a regular expression pattern, validates the data, and computes the aggregate sum.",
         "parameters": {
         "type": "object",
         "properties": {
             "file_path": {
             "type": "string",
-            "description": "The path to the JSONL file to be processed."
+            "description": "The path to the JSONL file containing the digitized sales data."
             },
             "key": {
             "type": "string",
-            "description": "The JSON key whose numeric values will be summed. Defaults to 'sales'.",
+            "description": "The JSON key whose numeric values will be summed (e.g., 'sales').",
             },
             "num_rows": {
             "type": "integer",
-            "description": "The expected number of rows for validation. Defaults to 100.",
+            "description": "The total number of rows in the JSONL file for data validation purposes.",
             },
             "regex_pattern": {
             "type": "string",
-            "description": "An custom regex pattern to extract the numeric value."
+            "description": "A custom regular expression pattern to extract the numeric value from each JSON line."
             }
         },
         "required": ["file_path","key", "num_rows", "regex_pattern"]
