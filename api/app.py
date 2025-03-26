@@ -25,14 +25,12 @@ def process_file():
 
     # Ensure tmp_dir is always assigned
     tmp_dir = "tmp_uploads"
-
     try:
-        matched_function, matched_description, matched_files = find_similar_question(question)
+        matched_function, matched_description = find_similar_question(question)
 
         if file:
             temp_dir, file_names = unzip_folder(file)
             tmp_dir = temp_dir  # Update tmp_dir if a file is uploaded
-
         parameters = extract_parameters(
             str(question),
             function_definitions_llm=function_definitions_objects_llm[matched_function],
@@ -49,7 +47,7 @@ def process_file():
             answer = solution_function(*parameters)
         return jsonify({"answer": answer})
     except Exception as e:
-        print(e)
+        print(e,"this is the error")
         return jsonify({"error": str(e)}), 500
 
 
