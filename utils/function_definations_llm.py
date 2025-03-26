@@ -2,15 +2,8 @@ function_definitions_objects_llm = {
     "vs_code_version": {
         "name": "vs_code_version",
         "description": "description",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                
-            },
-            "required": [""]
-        }
+        "parameters": {"type": "object", "properties": {}, "required": [""]},
     },
-
     "make_http_requests_with_uv": {
         "name": "make_http_requests_with_uv",
         "description": "extract the http url and query parameters from the given text for example 'uv run --with httpie -- https [URL] installs the Python package httpie and sends a HTTPS request to the URL. Send a HTTPS request to https://httpbin.org/get with the URL encoded parameter country set to India and city set to Chennai. What is the JSON output of the command? (Paste only the JSON body, not the headers)' in this example country: India and city: Chennai are the query parameters",
@@ -19,13 +12,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "query_params": {
                     "type": "object",
-                    "description": "The query parameters to send with the request URL encoded parameters"
+                    "description": "The query parameters to send with the request URL encoded parameters",
                 },
             },
-            "required": ["query_params","url"]
-        }
+            "required": ["query_params", "url"],
+        },
     },
-
     "run_command_with_npx": {
         "name": "run_command_with_npx",
         "description": "description",
@@ -34,13 +26,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_google_sheets": {
         "name": "use_google_sheets",
         "description": "description",
@@ -49,13 +40,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_excel": {
         "name": "use_excel",
         "description": "description",
@@ -64,13 +54,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_devtools": {
         "name": "use_devtools",
         "description": "description",
@@ -79,13 +68,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "count_wednesdays": {
         "name": "count_wednesdays",
         "description": "description",
@@ -94,13 +82,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "extract_csv_from_a_zip": {
         "name": "extract_csv_from_a_zip",
         "description": "description",
@@ -109,58 +96,55 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_json": {
         "name": "use_json",
-        "description": "description",
+        "description": "Sorts a JSON array of objects based on specified fields. The function takes a JSON string and an optional list of fields to sort by, with the default being ['age', 'name'].",
         "parameters": {
             "type": "object",
             "properties": {
-                "text": {
+                "jsonStr": {
                     "type": "string",
-                    "description": "The text to extract the data from"
-                }
+                    "description": "The JSON array of objects to be sorted",
+                },
+                "fields": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "List of fields to sort by, in order of priority. Default is ['age', 'name'].",
+                    "default": ["age", "name"],
+                },
             },
-            "required": ["text"]
-        }
+            "required": ["jsonStr"],
+        },
     },
-
     "multi_cursor_edits_to_convert_to_json": {
         "name": "multi_cursor_edits_to_convert_to_json",
         "description": "description",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "text": {
-                    "type": "string",
-                    "description": "The text to extract the data from"
-                }
-            },
-            "required": ["text"]
-        }
+        "parameters": {"type": "object", "properties": {}, "required": []},
     },
-
     "css_selectors": {
         "name": "css_selectors",
-        "description": "description",
+        "description": "Finds HTML elements using CSS selectors and calculates the sum of a specified attribute's values from those elements",
         "parameters": {
             "type": "object",
             "properties": {
-                "text": {
+                "attribute": {
                     "type": "string",
-                    "description": "The text to extract the data from"
-                }
+                    "description": "The attribute name whose values should be summed (e.g., 'data-value')",
+                },
+                "cssSelector": {
+                    "type": "string",
+                    "description": "The CSS selector to find specific elements (e.g., 'div.foo' for all div elements with class 'foo')",
+                },
             },
-            "required": ["text"]
-        }
+            "required": ["attribute", "cssSelector"],
+        },
     },
-
     "process_files_with_different_encodings": {
         "name": "process_files_with_different_encodings",
         "description": "description",
@@ -169,13 +153,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_github": {
         "name": "use_github",
         "description": "description",
@@ -184,13 +167,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "replace_across_files": {
         "name": "replace_across_files",
         "description": "description",
@@ -199,13 +181,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "list_files_and_attributes": {
         "name": "list_files_and_attributes",
         "description": "description",
@@ -214,13 +195,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "move_and_rename_files": {
         "name": "move_and_rename_files",
         "description": "description",
@@ -229,13 +209,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "compare_files": {
         "name": "compare_files",
         "description": "description",
@@ -244,13 +223,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "sql_ticket_sales": {
         "name": "sql_ticket_sales",
         "description": "description",
@@ -259,13 +237,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "write_documentation_in_markdown": {
         "name": "write_documentation_in_markdown",
         "description": "description",
@@ -274,13 +251,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "compress_an_image": {
         "name": "compress_an_image",
         "description": "description",
@@ -289,13 +265,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "host_your_portfolio_on_github_pages": {
         "name": "host_your_portfolio_on_github_pages",
         "description": "description",
@@ -304,13 +279,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_google_colab": {
         "name": "use_google_colab",
         "description": "description",
@@ -319,13 +293,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "use_an_image_library_in_google_colab": {
         "name": "use_an_image_library_in_google_colab",
         "description": "description",
@@ -334,13 +307,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "deploy_a_python_api_to_vercel": {
         "name": "deploy_a_python_api_to_vercel",
         "description": "description",
@@ -349,13 +321,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "create_a_github_action": {
         "name": "create_a_github_action",
         "description": "description",
@@ -364,13 +335,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "push_an_image_to_docker_hub": {
         "name": "push_an_image_to_docker_hub",
         "description": "description",
@@ -379,13 +349,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "write_a_fastapi_server_to_serve_data": {
         "name": "write_a_fastapi_server_to_serve_data",
         "description": "description",
@@ -394,13 +363,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "run_a_local_llm_with_llamafile": {
         "name": "run_a_local_llm_with_llamafile",
         "description": "description",
@@ -409,13 +377,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "llm_sentiment_analysis": {
         "name": "llm_sentiment_analysis",
         "description": "description",
@@ -424,13 +391,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "llm_token_cost": {
         "name": "llm_token_cost",
         "description": "description",
@@ -439,13 +405,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "generate_addresses_with_llms": {
         "name": "generate_addresses_with_llms",
         "description": "description",
@@ -454,13 +419,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "llm_vision": {
         "name": "llm_vision",
         "description": "description",
@@ -469,13 +433,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "llm_embeddings": {
         "name": "llm_embeddings",
         "description": "description",
@@ -484,13 +447,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "embedding_similarity": {
         "name": "embedding_similarity",
         "description": "description",
@@ -499,13 +461,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "vector_databases": {
         "name": "vector_databases",
         "description": "description",
@@ -514,13 +475,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "function_calling": {
         "name": "function_calling",
         "description": "description",
@@ -529,13 +489,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "get_an_llm_to_say_yes": {
         "name": "get_an_llm_to_say_yes",
         "description": "description",
@@ -544,13 +503,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "import_html_to_google_sheets": {
         "name": "import_html_to_google_sheets",
         "description": "description",
@@ -559,13 +517,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "scrape_imdb_movies": {
         "name": "scrape_imdb_movies",
         "description": "description",
@@ -574,13 +531,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "wikipedia_outline": {
         "name": "wikipedia_outline",
         "description": "description",
@@ -589,13 +545,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "scrape_the_bbc_weather_api": {
         "name": "scrape_the_bbc_weather_api",
         "description": "description",
@@ -604,13 +559,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "find_the_bounding_box_of_a_city": {
         "name": "find_the_bounding_box_of_a_city",
         "description": "description",
@@ -619,13 +573,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "search_hacker_news": {
         "name": "search_hacker_news",
         "description": "description",
@@ -634,13 +587,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "find_newest_github_user": {
         "name": "find_newest_github_user",
         "description": "description",
@@ -649,13 +601,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "create_a_scheduled_github_action": {
         "name": "create_a_scheduled_github_action",
         "description": "description",
@@ -664,13 +615,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "extract_tables_from_pdf": {
         "name": "extract_tables_from_pdf",
         "description": "description",
@@ -679,13 +629,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "convert_a_pdf_to_markdown": {
         "name": "convert_a_pdf_to_markdown",
         "description": "description",
@@ -694,13 +643,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "clean_up_excel_sales_data": {
         "name": "clean_up_excel_sales_data",
         "description": "description",
@@ -709,13 +657,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "clean_up_student_marks": {
         "type": "function",
         "function": {
@@ -726,32 +673,29 @@ function_definitions_objects_llm = {
                 "properties": {
                     "file_path": {
                         "type": "string",
-                        "description": "Path to the gzipped log file."
+                        "description": "Path to the gzipped log file.",
                     },
                     "section_prefix": {
                         "type": "string",
-                        "description": "URL prefix to filter log entries (e.g., '/telugu/')."
+                        "description": "URL prefix to filter log entries (e.g., '/telugu/').",
                     },
                     "weekday": {
                         "type": "integer",
-                        "description": "Day of the week as an integer (0=Monday, ..., 6=Sunday)."
+                        "description": "Day of the week as an integer (0=Monday, ..., 6=Sunday).",
                     },
                     "start_hour": {
                         "type": "integer",
-                        "description": "Start hour (inclusive) in 24-hour format."
+                        "description": "Start hour (inclusive) in 24-hour format.",
                     },
                     "end_hour": {
                         "type": "integer",
-                        "description": "End hour (exclusive) in 24-hour format."
+                        "description": "End hour (exclusive) in 24-hour format.",
                     },
                     "month": {
                         "type": "integer",
-                        "description": "Month number (e.g., 5 for May)."
+                        "description": "Month number (e.g., 5 for May).",
                     },
-                    "year": {
-                        "type": "integer",
-                        "description": "Year (e.g., 2024)."
-                    }
+                    "year": {"type": "integer", "description": "Year (e.g., 2024)."},
                 },
                 "required": [
                     "file_path",
@@ -760,12 +704,11 @@ function_definitions_objects_llm = {
                     "start_hour",
                     "end_hour",
                     "month",
-                    "year"
-                ]
-            }
-        }
+                    "year",
+                ],
+            },
+        },
     },
-
     "apache_log_downloads": {
         "name": "apache_log_downloads",
         "description": "description",
@@ -774,13 +717,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "clean_up_sales_data": {
         "name": "clean_up_sales_data",
         "description": "description",
@@ -789,13 +731,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "parse_partial_json": {
         "name": "parse_partial_json",
         "description": "description",
@@ -804,13 +745,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "extract_nested_json_keys": {
         "name": "extract_nested_json_keys",
         "description": "description",
@@ -819,13 +759,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "duckdb_social_media_interactions": {
         "name": "duckdb_social_media_interactions",
         "description": "description",
@@ -834,13 +773,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "transcribe_a_youtube_video": {
         "name": "transcribe_a_youtube_video",
         "description": "description",
@@ -849,13 +787,12 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
-
     "reconstruct_an_image": {
         "name": "reconstruct_an_image",
         "description": "description",
@@ -864,10 +801,10 @@ function_definitions_objects_llm = {
             "properties": {
                 "text": {
                     "type": "string",
-                    "description": "The text to extract the data from"
+                    "description": "The text to extract the data from",
                 }
             },
-            "required": ["text"]
-        }
+            "required": ["text"],
+        },
     },
 }
